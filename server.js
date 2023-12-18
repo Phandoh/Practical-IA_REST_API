@@ -9,10 +9,19 @@ app.get("/", (req,res)=>{
     app.send("Hello everyone")
 });
 
-app.post("/patient",async(req,res)=>{
+app.post("/patients",async(req,res)=>{
     try {
         const patient = await Patient.create(req.body);
         res.status(200).json(patient);
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+})
+
+app.put("/patients/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const patient = await Patient.findByIdAndUpdate(id, req.body)
     } catch (error) {
         res.status(500).json({error: error.message})
     }
