@@ -30,7 +30,7 @@ app.put("/patients/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+  
 app.put("/patients/:id", async (req, res) => {
   const filter = [
     { BloodPressure: req.body.BloodPressure },
@@ -55,7 +55,7 @@ app.put("/patients/:id", async (req, res) => {
 app.get("/patients", async (req, res) => {
   try {
     const patients = await Patient.find({});
-    res.status(200).json(patients);
+    res.status(200).json(patients)
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
