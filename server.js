@@ -52,6 +52,15 @@ app.put("/patients/:id", async (req, res) => {
   }
 });
 
+app.get("/patients",async(req,res)=>{
+    try {
+        const patients = await Patient.find({});
+        res.status(200).json(patients);
+    } catch (error) {
+        res.status(500).json({ error: error.message });  
+    }
+})
+
 mongoose.connect("mongodb://localhost:27017").then(() => {
   console.log("connected to MongoDB");
   app.listen(3000, () => {
