@@ -55,9 +55,7 @@ app.put("/patients/:id", async (req, res) => {
 app.get("/patients", async (req, res) => {
   try {
     const patients = await Patient.find({});
-    if (!patient) {
-      res.status(404).json(`There is no patient with this ${id}`);
-    };
+    res.status(200).json(patients);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
