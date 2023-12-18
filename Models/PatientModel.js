@@ -37,6 +37,12 @@ const patientSchema = mongoose.Schema(
         RelationshipWithPatient: {
             type: String,
             required: true
+        },
+        DateAndTime:{
+            type: String
+        },
+        TypeOfEncounter:{
+            type: String
         }
     },{
         timestamps: true
