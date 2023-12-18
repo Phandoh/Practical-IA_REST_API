@@ -52,14 +52,26 @@ app.put("/patients/:id", async (req, res) => {
   }
 });
 
-app.get("/patients",async(req,res)=>{
-    try {
-        const patients = await Patient.find({});
-        res.status(200).json(patients);
-    } catch (error) {
-        res.status(500).json({ error: error.message });  
-    }
-})
+app.get("/patients", async (req, res) => {
+  try {
+    const patients = await Patient.find({});
+    if (!patient) {
+      res.status(404).json(`There is no patient with this ${id}`);
+    };
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("patients/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const patient = await Patient.findById(id);
+    res.status(200).json(patient);
+  } catch (error) {
+    res.status(500).json({ error: `No patient with the ID of "${id}"` });
+  }
+});
 
 mongoose.connect("mongodb://localhost:27017").then(() => {
   console.log("connected to MongoDB");
