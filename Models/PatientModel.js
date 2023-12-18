@@ -43,7 +43,19 @@ const patientSchema = mongoose.Schema(
         },
         TypeOfEncounter:{
             type: String
-        }
+        },
+        BloodPressure:{
+            type:Number
+        },
+        Temperature:{
+            type:Number
+        },
+        Pulse:{
+            type:Number
+        },
+        SPo2:{
+            type:Number
+        },
     },{
         timestamps: true
     }
